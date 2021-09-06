@@ -20,7 +20,8 @@ public enum NFLWeek {
             NFLGame.of(NFLTeam.NEW_ORLEANS_SAINTS, NFLTeam.GREEN_BAY_PACKERS),
             NFLGame.of(NFLTeam.NEW_YORK_GIANTS, NFLTeam.DENVER_BRONCOS),
             NFLGame.of(NFLTeam.NEW_ENGLAND_PATRIOTS, NFLTeam.MIAMI_DOLPHINS),
-            NFLGame.of(NFLTeam.LOS_ANGELES_CHARGERS, NFLTeam.CHICAGO_BEARS)
+            NFLGame.of(NFLTeam.LOS_ANGELES_RAMS, NFLTeam.CHICAGO_BEARS),
+            NFLGame.of(NFLTeam.LAS_VEGAS_RAIDERS, NFLTeam.BALTIMORE_RAVENS)
 
     ),
     WEEK_2(),
