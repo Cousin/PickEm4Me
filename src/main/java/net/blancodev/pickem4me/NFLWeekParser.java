@@ -1,34 +1,55 @@
 package net.blancodev.pickem4me;
 
-import java.io.File;
-import java.nio.file.Files;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.Arrays;
 
 public class NFLWeekParser {
 
     public static void main(String[] args) throws Exception {
 
-        for (String line : Files.readAllLines(new File("week.txt").toPath())) {
+        for (int i = 1; i <= 17; i++) {
 
-            if (line.contains("nfl-c-matchup-strip__left-area")) {
+            final JSONObject weekData = getWeekData(i);
 
-                String[] teamsSplit = line.split(" vs ");
+            final JSONArray games = weekData.getJSONArray("games");
 
-                String homeStr = teamsSplit[0].split("aria-label=\"")[1];
-                String awayStr = teamsSplit[1].split(" ")[0];
+            System.out.println("WEEK_" + i + "(");
 
-                System.out.println("NFLGame.of(NFLTeam." + getTeamByCloseName(homeStr).name() + ", NFLTeam." + getTeamByCloseName(awayStr).name() + "),");
+            for (Object game : games) {
+
+                JSONObject gameObject = new JSONObject(String.valueOf(game));
+
+                JSONObject homeObject = gameObject.getJSONObject("homeTeam");
+                JSONObject awayObject = gameObject.getJSONObject("awayTeam");
+
+                System.out.println("\t\tNFLGame.of(NFLTeam." + getTeamByCloseName(homeObject.getString("nickName")).name() + ", NFLTeam." + getTeamByCloseName(awayObject.getString("nickName")).name() + "),");
 
             }
 
+            System.out.println("),");
+
         }
+
+    }
+
+    private static JSONObject getWeekData(int week) {
+
+        final ConnectionBuilder connectionBuilder = new ConnectionBuilder("https://api.nfl.com/experience/v1/games?season=2021&seasonType=REG&week=" + week)
+                .https(true)
+                .method(ConnectionBuilder.ConnectionMethod.GET)
+                .header("Authorization", "Bearer <redacted>")
+                .send();
+
+        return new JSONObject(connectionBuilder.getResponse());
 
     }
 
     private static NFLTeam getTeamByCloseName(String name) {
 
         return Arrays.stream(NFLTeam.values())
-                .filter(t -> t.name().contains(name.toUpperCase()))
+                .filter(t -> t.name().contains(name.toUpperCase().replace(" ", "_")))
                 .findFirst()
                 .orElse(null);
 
