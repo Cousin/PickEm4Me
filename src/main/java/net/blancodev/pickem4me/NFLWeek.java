@@ -305,6 +305,10 @@ public enum NFLWeek {
         return Arrays.stream(games).filter(g -> g.getHome() == nflTeam || g.getAway() == nflTeam).findFirst().orElse(null);
     }
 
+    public int getWeekNumber() {
+        return ordinal() + 1;
+    }
+
     public NFLGame[] getGames() {
         return games;
     }
