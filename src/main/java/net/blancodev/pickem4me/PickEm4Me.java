@@ -103,7 +103,7 @@ public class PickEm4Me {
 
         for (NFLGame pick : picks) {
 
-            System.out.println(pick.getHigherPoweredTeam() + " - " + pick.getPowerDifference() + " (" + pick.getHome() + " vs " + pick.getAway() + ")");
+            System.out.println(String.valueOf(picks.indexOf(pick) + 1) + ": " + pick.getHigherPoweredTeam() + " - " + pick.getPowerDifference() + " vs " + pick.getLowerPoweredTeam());
 
         }
 

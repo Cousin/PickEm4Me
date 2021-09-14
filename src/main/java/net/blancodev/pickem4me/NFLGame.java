@@ -18,6 +18,10 @@ public class NFLGame {
         return getHome().getPowerRanking() < getAway().getPowerRanking() ? getHome() : getAway();
     }
 
+    public NFLTeam getLowerPoweredTeam() {
+        return getHome().getPowerRanking() > getAway().getPowerRanking() ? getHome() : getAway();
+    }
+
     public int getPowerDifference() {
         return Math.abs(getHome().getPowerRanking() - getAway().getPowerRanking());
     }
