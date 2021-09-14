@@ -5,9 +5,12 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+/**
+ * Generates {@link NFLWeek} enum based on NFL API data
+ */
 public class NFLWeekParser {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         for (int i = 1; i <= 17; i++) {
 

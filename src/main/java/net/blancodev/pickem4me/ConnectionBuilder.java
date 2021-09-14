@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Class I wrote a while ago and re-use/tweak in all of my projects
+ * Easily builds HTTP(S) requests and responses
+ */
 public class ConnectionBuilder {
 
     private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
@@ -128,32 +132,6 @@ public class ConnectionBuilder {
 
                 HttpURLConnection connection;
                 if (https) {
-
-                    //random ass shit i took off stackoverflow that made it work.. dont ask
-                   /* CookieHandler.setDefault(new CookieManager());
-                    TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                        public X509Certificate[] getAcceptedIssuers() {
-                            return null;
-                        }
-
-                        public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                        }
-
-                        public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                        }
-                    }};
-                    SSLContext sc = null;
-                    try {
-                        sc = SSLContext.getInstance("SSL");
-                    } catch (NoSuchAlgorithmException e) {
-                      //  e.printStackTrace();
-                    }
-                    try {
-                        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-                    } catch (KeyManagementException e) {
-                       // e.printStackTrace();
-                    }
-                    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());*/
                     if (proxy != null) {
                         connection = (HttpsURLConnection) urlCache.get(endpoint).openConnection(proxy);
                     } else {
@@ -167,7 +145,6 @@ public class ConnectionBuilder {
                     }
                 }
 
-                //   connection.setInstanceFollowRedirects(false);
                 connection.setConnectTimeout(timeout);
                 connection.setReadTimeout(timeout);
                 connection.setDoInput(true);
@@ -241,30 +218,6 @@ public class ConnectionBuilder {
 
                 HttpURLConnection connection;
                 if (https) {
-                    /*CookieHandler.setDefault(new CookieManager());
-                    TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                        public X509Certificate[] getAcceptedIssuers() {
-                            return null;
-                        }
-
-                        public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                        }
-
-                        public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                        }
-                    }};
-                    SSLContext sc = null;
-                    try {
-                        sc = SSLContext.getInstance("SSL");
-                    } catch (NoSuchAlgorithmException e) {
-                     //   e.printStackTrace();
-                    }
-                    try {
-                        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-                    } catch (KeyManagementException e) {
-                        //e.printStackTrace();
-                    }
-                    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());*/
                     if (proxy != null) {
                         connection = (HttpsURLConnection) urlCache.get(endpoint).openConnection(proxy);
                     } else {
@@ -278,9 +231,6 @@ public class ConnectionBuilder {
                     }
                 }
 
-               // connection.setInstanceFollowRedirects(false);
-
-               // connection.setRequestMethod("GET");
                 if (!minimize) {
                     connection.setRequestProperty("User-Agent", USER_AGENT);
                 }
@@ -304,8 +254,6 @@ public class ConnectionBuilder {
 
 
         } catch (Exception e) {
-         //   System.out.println("Connection error " + (proxy != null ? "Using Proxy " + proxy : ""));
-         //   System.out.println(e.getMessage());
             failed = true;
         }
 

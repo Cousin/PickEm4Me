@@ -2,6 +2,10 @@ package net.blancodev.pickem4me;
 
 import java.util.Arrays;
 
+/**
+ * Enum containing all 17 weeks of NFL regular season and each game per week
+ * Generated automatically with {@link NFLWeekParser}
+ */
 public enum NFLWeek {
 
     WEEK_1(
@@ -301,14 +305,25 @@ public enum NFLWeek {
         this.games = games;
     }
 
+    /**
+     * Find the game for this week containing the provided team
+     * @param nflTeam the team to look for
+     * @return the game or null if none found
+     */
     public NFLGame getGameByTeam(NFLTeam nflTeam) {
         return Arrays.stream(games).filter(g -> g.getHome() == nflTeam || g.getAway() == nflTeam).findFirst().orElse(null);
     }
 
+    /**
+     * @return the week number (1-17)
+     */
     public int getWeekNumber() {
         return ordinal() + 1;
     }
 
+    /**
+     * @return array of every game for this week
+     */
     public NFLGame[] getGames() {
         return games;
     }

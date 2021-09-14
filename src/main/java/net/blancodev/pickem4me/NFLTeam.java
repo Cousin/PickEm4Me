@@ -35,6 +35,12 @@ public enum NFLTeam {
     NEW_YORK_JETS,
     JACKSONVILLE_JAGUARS;
 
+    /**
+     * The NFL ranks every team each week in a list called 'Power Rankings'
+     * Every week depending on how good or bad each team did, they get moved
+     * Number 1 (or in our case 0) is considered the best team in the league
+     * @return the power ranking for this team
+     */
     public int getPowerRanking() {
         return ordinal();
     }

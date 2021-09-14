@@ -16,6 +16,11 @@ public class PickEm4Me {
 
     }
 
+    /**
+     * Method #1 (currently using) for picking teams
+     * This method is very basic and just finds the highest power difference game of the week and picks that
+     * @return the chosen picks
+     */
     private static List<NFLGame> getPicksMethod1() {
 
         final List<NFLGame> picks = new ArrayList<>();
@@ -40,6 +45,12 @@ public class PickEm4Me {
 
     }
 
+    /**
+     * Method #2 (partially unfinished)
+     * This method is intended to find the highest power difference games, but does not pick that team if they can be used to be even higher powered later on
+     * This method has it's flaws though and in beginning weeks causes very low power difference picks
+     * @return the chosen picks
+     */
     private static List<NFLGame> getPicksMethod2() {
 
         final List<NFLGame> picks = new ArrayList<>();
@@ -51,7 +62,6 @@ public class PickEm4Me {
             for (NFLGame nflGame : nflWeek.getGames()) {
                 if (chosenGame == null || nflGame.getPowerDifference() > chosenGame.getPowerDifference()) {
                     if (!ALREADY_CHOSEN.contains(nflGame.getHigherPoweredTeam()) && picks.stream().noneMatch(g -> g.getHigherPoweredTeam() == nflGame.getHigherPoweredTeam())) {
-                        //chosenGame = nflGame;
 
                         boolean foundBetterWeek = false;
                         for (NFLWeek futureWeek : getWeeksStartingAt(nflWeek.getWeekNumber() + 1)) {
@@ -66,11 +76,6 @@ public class PickEm4Me {
 
                                 if (gameWithTeam.getPowerDifference() - nflGame.getPowerDifference() > 5) {
                                     foundBetterWeek = true;
-                                  /*  System.out.println("---");
-                                    System.out.println("FOUND BETTER");
-                                    System.out.println("Current: " + nflGame.getHigherPoweredTeam() + " - " + nflGame.getPowerDifference());
-                                    System.out.println("Better: " + gameWithTeam.getHigherPoweredTeam() + " - " + gameWithTeam.getPowerDifference());
-                                    System.out.println("---");*/
                                     break;
                                 }
                             }
@@ -92,6 +97,11 @@ public class PickEm4Me {
 
     }
 
+    /**
+     * Creates and returns an array of every week starting at (inclusive) the provided week
+     * @param week the week to start at
+     * @return array of {@link NFLWeek}
+     */
     private static NFLWeek[] getWeeksStartingAt(int week) {
         if (week > 17) {
             return new NFLWeek[0];
@@ -99,13 +109,17 @@ public class PickEm4Me {
         return Arrays.copyOfRange(NFLWeek.values(), week - 1, NFLWeek.values().length);
     }
 
+    /**
+     * Print the stats of a chosen list of {@link NFLGame}
+     * @param picks the chosen games
+     */
     private static void printPicksStats(List<NFLGame> picks) {
 
         System.out.println("-".repeat(25));
 
         for (NFLGame pick : picks) {
 
-            System.out.println(String.valueOf(picks.indexOf(pick) + CURRENT_WEEK) + ": " + pick.getHigherPoweredTeam() + " - " + pick.getPowerDifference() + " vs " + pick.getLowerPoweredTeam());
+            System.out.println((picks.indexOf(pick) + CURRENT_WEEK) + ": " + pick.getHigherPoweredTeam() + " - " + pick.getPowerDifference() + " vs " + pick.getLowerPoweredTeam());
 
         }
 
