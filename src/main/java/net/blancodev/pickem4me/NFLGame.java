@@ -2,6 +2,12 @@ package net.blancodev.pickem4me;
 
 public class NFLGame {
 
+    /**
+     * Protected method to create NFLGame object, for aesthetics especially within the {@link NFLWeek} enum
+     * @param home the home team
+     * @param away the away team
+     * @return the created NFLGame
+     */
     protected static NFLGame of(NFLTeam home, NFLTeam away) {
         return new NFLGame(home, away);
     }
