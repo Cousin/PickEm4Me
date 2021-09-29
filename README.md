@@ -1,5 +1,7 @@
 # PickEm4Me
 
+CURRENT STATUS: 3-0 , no buy-backs needed still alive!
+
 PickEm4Me is a little program I made to help me decide which team I will pick for a NFL Survivor Pool
 
 A Survivor Pool (or at-least the one I joined) works like this
