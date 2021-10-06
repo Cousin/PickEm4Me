@@ -5,13 +5,14 @@ import java.util.*;
 public class PickEm4Me {
 
     private static final Set<NFLTeam> ALREADY_CHOSEN = new HashSet<>();
-    private static final int CURRENT_WEEK = 4;
+    private static final int CURRENT_WEEK = 5;
 
     public static void main(String[] args) {
 
         ALREADY_CHOSEN.add(NFLTeam.SAN_FRANCISCO_49ERS);
         ALREADY_CHOSEN.add(NFLTeam.TAMPA_BAY_BUCCANEERS);
         ALREADY_CHOSEN.add(NFLTeam.BALTIMORE_RAVENS);
+        ALREADY_CHOSEN.add(NFLTeam.BUFFALO_BILLS);
 
         printPicksStats(getPicksMethod1());
         printPicksStats(getPicksMethod2());
