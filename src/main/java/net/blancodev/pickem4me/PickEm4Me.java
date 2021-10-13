@@ -5,7 +5,7 @@ import java.util.*;
 public class PickEm4Me {
 
     private static final Set<NFLTeam> ALREADY_CHOSEN = new HashSet<>();
-    private static final int CURRENT_WEEK = 5;
+    private static final int CURRENT_WEEK = 6;
 
     public static void main(String[] args) {
 
@@ -13,6 +13,7 @@ public class PickEm4Me {
         ALREADY_CHOSEN.add(NFLTeam.TAMPA_BAY_BUCCANEERS);
         ALREADY_CHOSEN.add(NFLTeam.BALTIMORE_RAVENS);
         ALREADY_CHOSEN.add(NFLTeam.BUFFALO_BILLS);
+        ALREADY_CHOSEN.add(NFLTeam.DALLAS_COWBOYS);
 
         printPicksStats(getPicksMethod1());
         printPicksStats(getPicksMethod2());
