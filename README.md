@@ -1,6 +1,6 @@
 # PickEm4Me
 
-CURRENT STATUS: 6-0 , no buy-backs needed still alive!
+CURRENT STATUS: 7-0 , no buy-backs needed still alive!
 
 PickEm4Me is a little program I made to help me decide which team I will pick for a NFL Survivor Pool
 
